@@ -1,0 +1,65 @@
+#include <iostream>
+using namespace std;
+class MangDT{
+	DuongTron *dt;
+	int n;
+	public:
+		void nhap(); void hienthi(); void sapxep(); void khoitao(float bk); float BKlonnhat(); float getR();
+    MangDT(){
+    	n=0;
+	}
+	MangDt(int m){
+		n=m;
+		dt=new DuongTron[n];
+	}
+	~MangDT(){
+		n=0;
+		delete []dt;
+	}
+};
+float MangDT::getR() {
+	return r;
+}
+void MangDT::khoitao(float bk){
+	r=bk;
+}
+void MangDT::nhap(){
+	cout<<"nhap so duong tron n=";cin>>n;
+	for(int i=0;i<n:i++){
+		float bk;
+		cout<<"nhap ban kinh r=";cin>>bk;
+		dt[i].khoitao(bk);
+	}
+}
+void MangDT::hienthi(){
+	for(int i=0;i<n;i++){
+		cout<<"duong tron"<<i+1"co ban kinh r="<<dt[i].getR()<<endl; 
+		cout<<"dien tich duong tron ="<<dt[i].tinhDienTich()<<endl;
+	}
+}
+void MangDT::sapxep(){
+	for(int i=0;i<n-1;i++){
+		int min=1;
+		for(int j=1+1;j<n;j++)
+		    if(dt[min].getR()>dt[j].getR())
+		        min=j;
+		DuongTron tg;
+		tg=dt[i];
+		dt[i]=dt[min];dt[min]=tg;//hoan doi        
+	}
+}
+float MangDT::BKlonnhat(){
+	int ln=dt[0].getR();
+	for(int i=1;i<n;i++)
+	    if(ln<dt[i].getR())
+	        ln=dt[i].getR;
+	return ln;        
+}
+int main() {
+	MangDT dt;
+	dt.nhap();
+	dt.sapxep();
+	dt.hienthi();
+	cout<<"ban kinh lon nhat la"<<dt.BKlonnhat()<<endl;
+	return 0;
+}
